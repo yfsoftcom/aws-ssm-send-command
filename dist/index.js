@@ -71,7 +71,7 @@ function SanitizeInputs() {
     if (!!_extra) {
         const extraObject = JSON.parse(_extra);
         extraObject.map((v, k) => {
-            _command = _command.replace(`{${k}}`, v);
+            _command = _command.replace(new RegExp(`{${k}}`, 'g'), v);
         });
     }
     // customized not supported yet, will be updated soon.
