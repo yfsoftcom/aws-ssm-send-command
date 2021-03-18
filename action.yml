@@ -32,6 +32,10 @@ inputs:
     required: false
     description: "Comment for Send-Command"
     default: "Executed by Github Actions"
+  extra:
+    required: false
+    description: "Extra for Send-Command"
+    default: "{}"
 
 runs:
   using: "node12"

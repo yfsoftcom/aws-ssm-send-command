@@ -56,8 +56,8 @@ function SanitizeInputs() {
   const _extra = core.getInput("extra");
   if (!!_extra) {
     const extraObject = JSON.parse(_extra);
-    extraObject.map((v: any, k: String) => {
-      _command = _command.replace(new RegExp(`{${k}}`, 'g'), v);
+    Object.keys(extraObject).map((k: string) => {
+      _command = _command.replace(new RegExp(`{${k}}`, 'g'), extraObject[k]);
     })
   }
 
