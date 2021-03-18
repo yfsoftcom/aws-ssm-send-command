@@ -49,9 +49,17 @@ function SanitizeInputs() {
 
   // SSM Send Command
   const _instanceIds = core.getInput("instance-ids", { required: true });
-  const _command = core.getInput("command");
+  let _command = core.getInput("command");
   const _workingDirectory = core.getInput("working-directory");
   const _comment = core.getInput("comment");
+
+  const _extra = core.getInput("extra");
+  if (!!_extra) {
+    const extraObject = JSON.parse(_extra);
+    extraObject.map((v: any, k: String) => {
+      _command = _command.replace(`{${k}}`, v);
+    })
+  }
 
   // customized not supported yet, will be updated soon.
   const _documentName = "AWS-RunShellScript";
